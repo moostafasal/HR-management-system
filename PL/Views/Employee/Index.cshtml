@@ -1,0 +1,98 @@
+﻿@model IEnumerable<EmployeeVeiewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Departments</h1>
+<br />
+<a asp-controller="Employee" asp-action="Create" class="btn btn-primary mt-5">Add New Employee</a>
+<br />
+<br />
+<form asp-action="index">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-8">
+            <input type="search" class="form-control"name="serchvalue" />
+        </div>
+        <div class="col-8">
+            <input type="submit" value="serch>>" class="btn btn-success" />
+        </div>
+
+    </div>
+</form>
+@if (Model?.Count() > 0)
+{
+    <table class="table table-stripped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(M => M.Name)</th>
+                <th>@Html.DisplayNameFor(M => M.age)</th>
+                <th>@Html.DisplayNameFor(M => M.Address)</th>
+                <th>@Html.DisplayNameFor(M => M.Image)</th>
+                <th>@Html.DisplayNameFor(M => M.salary)</th>
+                <th>@Html.DisplayNameFor(M => M.IsActive)</th>
+                <th>@Html.DisplayNameFor(M => M.Email)</th>
+                <th>@Html.DisplayNameFor(M => M.phone)</th>
+                <th>@Html.DisplayNameFor(M => M.HireDate)</th>
+                <th>@Html.DisplayNameFor(M => M.Department)</th>
+
+
+
+
+
+
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(M=>item.Name)</td>
+                    <td>@Html.DisplayFor(M=>item.age)</td>
+                    <td>@Html.DisplayFor(M=>item.Address)</td>
+                    <td>
+                        <img src="~/Files/Imges/@item.ImgName" alt="Employee imge" class="img-fluid" height="30" />
+                    </td>
+                    <td>@Html.DisplayFor(M=>item.salary)</td>
+                    <td>@Html.DisplayFor(M=>item.IsActive)</td>
+                    <td>@Html.DisplayFor(M=>item.Email)</td>
+                    <td>@Html.DisplayFor(M=>item.phone)</td>
+                    <td>@Html.DisplayFor(M=>item.HireDate)</td>
+                    <td>@Html.DisplayFor(M=>item.Department.Name)</td>
+
+
+                    <td>
+                        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">
+                            <i class="fas fa-eye"></i> Details
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+
+
+
+
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mt-5  alert alert-warning">
+        <h4>No Employee Found!!</h4>
+    </div>
+}
+

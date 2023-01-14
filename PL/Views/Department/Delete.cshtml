@@ -1,0 +1,14 @@
+﻿@model Department;
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text-denger">Are you sure?</h1>
+<form asp-action="Delete"> 
+    <input hidden asp-for="id" />
+    <partial name="_ReadanDetialsPartial" model="@Model" />
+    <input type="submit" value="Delete" class="btn btn-danger " />
+    <a asp-action="Index" class="btn btn-light">cancel--</a>
+
+</form>
+

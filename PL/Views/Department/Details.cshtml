@@ -1,0 +1,15 @@
+﻿  @model Department;
+@{
+    ViewData["Title"] = "Details";
+}
+<h1>Details</h1>
+
+<form >
+    <partial name="_ReadanDetialsPartial" model="@Model" />
+
+    <a asp-action="Edit" asp-route-id="@Model.id" >Edit</a>
+    <a asp-action="Index" class="btn btn-light">Back to list--</a>
+
+</form>
+
+

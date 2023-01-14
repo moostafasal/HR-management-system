@@ -1,0 +1,78 @@
+﻿@using BLL.Interfaces
+@model EmployeeVeiewModel
+
+
+
+@{
+    ViewData["Title"] = "Add";
+}
+@{
+    var depatment = new SelectList(ViewBag.Department, "id", "Name");
+}
+
+<h1>Add New employee</h1>
+<br />
+<br />
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+    <label class="col-form-label" asp-for="Name" >   </label>
+    <input class="form-control"asp-for="Name"/>
+    <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="age">   </label>
+        <input  class="form-control" asp-for="age" />
+        <span asp-validation-for="age" class="text-danger"></span>
+    </div>    
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Address">   </label>
+        <input  class="form-control" asp-for="Address" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="salary">   </label>
+        <input class="form-control" asp-for="salary" />
+        <span asp-validation-for="salary" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="IsActive">   </label>
+        <input class="form-control" asp-for="IsActive" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Email">   </label>
+        <input class="form-control" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="phone">   </label>
+        <input class="form-control" asp-for="phone" />
+        <span asp-validation-for="phone" class="text-danger"></span>
+    </div>
+        <div class="form-group">
+        <label class="col-form-label" asp-for="HireDate">   </label>
+        <input class="form-control" asp-for="HireDate" />
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Department">   </label>
+        <select class="form-control" asp-for="DepartmentId" asp-items="depatment">
+            <option value="@null">--select Department</option>
+
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label" asp-for="Image">   </label>
+        <input class="form-control" asp-for="Image" />
+    </div>
+    <input type="submit" value="submit"class="btn-primary" />
+    <a asp-action="index" class="btn btn-light">Bake to List</a>
+
+</form>
+@*@section validation{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}*@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
