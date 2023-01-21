@@ -1,4 +1,4 @@
-# 3teir arct
+# HR management system 3-layer architecture
 This is an MVC project built using ASP.NET Core 5 and the Entity Framework, utilizing LINQ for data access. It follows the principles of the Clean Architecture, also known as the "Onion Architecture", which promotes separation of concerns and maintainability. The project uses the Repository pattern and Unit of Work pattern to manage the data access and transactions. The project is an HR management system that implements the Identity framework for authorization and authentication.
 
 The project follows the "3-layer architecture" pattern, where the first layer is the data layer, responsible for handling the database operations and the Entity Framework. The second layer is the business layer, which contains the business logic and implements the Repository and Unit of Work patterns. The third layer is the presentation layer, which is responsible for handling the user interface and user interactions.
