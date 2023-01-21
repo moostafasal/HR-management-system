@@ -10,6 +10,7 @@ namespace BLL.Interfaces
     {//segnetsher proop
         IGenericRepository<TEntity> reposatery<TEntity>() where TEntity : class;
         Task<int> complet();
+        public IEmployee EmployeeRepo();
 
     }
 }

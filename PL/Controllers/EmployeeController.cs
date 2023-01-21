@@ -37,13 +37,14 @@ namespace PL.Controllers
         {
             if (string.IsNullOrEmpty(serchvalue))
             {
-                var Employee = await _uintOfWork._EmployeeReposatry.GEtAll();
+                var Employee = await _uintOfWork.reposatery<Employee>().GEtAll();
                 var mappEmployee = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeVeiewModel>>(Employee);
                 return View(mappEmployee);
             }
             else
             {
-                var employees= _uintOfWork._EmployeeReposatry.GetEmployeesByName(serchvalue);
+               
+                var employees = _uintOfWork.EmployeeRepo().GetEmployeesByName(serchvalue);
                 var mappEmployee = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeVeiewModel>>(employees);
                 return View(mappEmployee); 
             }
@@ -52,14 +53,14 @@ namespace PL.Controllers
         public async Task <IActionResult> Create()
         {
             //call Department Reposatry to get Department :)
-            ViewBag.Department =await _uintOfWork._DepartmentReposatry.GEtAll();
+            ViewBag.Department =await _uintOfWork.reposatery<Department>().GEtAll();
               return  View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(EmployeeVeiewModel Employeevm)
         {
-            ViewBag.Department = await _uintOfWork._DepartmentReposatry.GEtAll();
+            ViewBag.Department = await _uintOfWork.reposatery<Department>().GEtAll();
 
             if (ModelState.IsValid)//server side VALIDATION
 
@@ -76,7 +77,7 @@ namespace PL.Controllers
                    Employeevm.ImgName= DecoumentSeting.UploadFiles(Employeevm.Image, "Imges");
                     //thes is a just basic mapping salary ==salery and salary != EMSAlae :)
                 var mappEmp = _mapper.Map<EmployeeVeiewModel,Employee>(Employeevm);
-                await    _uintOfWork._EmployeeReposatry.add(mappEmp);
+                await    _uintOfWork.reposatery<Employee>().add(mappEmp);
                 return  RedirectToAction(nameof(Index));
                     
                
@@ -92,7 +93,7 @@ namespace PL.Controllers
                 return NotFound();
             }
             var spec = new EmployeeSpasific(id.Value);
-            var Employee = await _uintOfWork._EmployeeReposatry.GetIdwithspecAsync(spec);
+            var Employee = await _uintOfWork.reposatery<Employee>().GetIdwithspecAsync(spec);
 
 
             //if (id == null)
@@ -109,7 +110,7 @@ namespace PL.Controllers
         }
         public  async Task < IActionResult> Edit(int? id)
         {
-            ViewBag.Department = _uintOfWork._DepartmentReposatry.GEtAll();
+            ViewBag.Department = _uintOfWork.reposatery<Department>().GEtAll();
 
             //if (id == null)
             //    return NotFound();
@@ -133,7 +134,7 @@ namespace PL.Controllers
                 try
                 {
                     var mappEp = _mapper.Map<EmployeeVeiewModel, Employee>(EmployeeVm);
-                  await  _uintOfWork._EmployeeReposatry.update(mappEp);
+                  await  _uintOfWork.reposatery<Employee>().update(mappEp);
                     return RedirectToAction(nameof(Index));
                 }
                 catch (System.Exception cw)
@@ -166,7 +167,7 @@ namespace PL.Controllers
                 {
                     var mappEp = _mapper.Map<EmployeeVeiewModel, Employee>(EmployeevM);
 
-                  await  _uintOfWork._EmployeeReposatry.delete(mappEp);
+                  await  _uintOfWork.reposatery<Employee>().delete(mappEp);
                     DecoumentSeting.DeleFile(EmployeevM.ImgName, "Imges");
                     return RedirectToAction(nameof(Index));
                 }
